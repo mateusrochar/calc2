@@ -10,15 +10,16 @@ namespace Calculadora2
         public double NumberB { get; set; }
         public double Result { get; set; }
         public string Symbol { get; set; }
+        public double Sum { get; set; }
 
 
 
-        public void Operations(string a)
+        public void Operation(string a)
         {
 
-            if(a == "+")
+            if (a == "+")
             {
-                Sum(NumberA, NumberB);
+                Addition(NumberA, NumberB);
             }
             else if (a == "-")
             {
@@ -32,8 +33,7 @@ namespace Calculadora2
             {
                 Division(NumberA, NumberB);
             }
-
-
+     
 
 
         }
@@ -41,24 +41,24 @@ namespace Calculadora2
 
 
 
-        public double Sum (double numberA, double numberB)
+        public void Addition (double numberA, double numberB)
         {
-            return numberA + numberB;
+            Result = numberA + numberB;
         }
 
-        public double Subtraction (double numberA, double numberB)
+        public void Subtraction (double numberA, double numberB)
         {
-            return numberA - numberB;
+            Result = numberA - numberB;
         }
 
-        public double Multiplication (double numberA, double numberB)
+        public void Multiplication (double numberA, double numberB)
         {
-            return numberA * numberB;
+            Result = numberA * numberB;
         }
 
-        public double Division (double numberA, double numberB)
+        public void Division (double numberA, double numberB)
         {
-            return numberA / numberB;
+            Result = numberA / numberB;
         }
 
 

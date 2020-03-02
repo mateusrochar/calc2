@@ -15,19 +15,27 @@ namespace Calculadora2
 
             while (iniciador == "start")
             {
-
-                Console.Write("Insira o primeiro numero:");
+                Console.WriteLine();
+                Console.Write("Insira o primeiro numero: ");
                 date.NumberA = double.Parse(Console.ReadLine().Trim());
+                Console.WriteLine();
 
-                Console.Write("Insira a operação(+;-;*;/):");
-                date.Symbol = Console.ReadLine().Trim();
+                Console.Write("Insira a operação(+;-;*;/): ");
+                date.Symbol = Console.ReadLine().Trim().ToLower();
+                Console.WriteLine();
 
-                Console.Write("Insira o segundo numero:");
+                Console.Write("Insira o segundo numero: ");
                 date.NumberB = double.Parse(Console.ReadLine().Trim());
+                Console.WriteLine();
 
-                date.Operations(date.Symbol);
 
-                Console.WriteLine("Resultado: "+date.Result);
+                date.Operation(date.Symbol);
+
+                date.Sum = date.Result;
+
+                Console.WriteLine("Resultado: "+date.Sum);
+                Console.WriteLine();
+
 
 
                 string iniciador2 = "start";
@@ -35,48 +43,66 @@ namespace Calculadora2
                 while (iniciador2 == "start")
                 {
 
-                    Console.WriteLine("Deseja continuar calculando com o resultado(y/n)?");
-                    verificador = Console.ReadLine().Trim();
-                    if (verificador == "y")
+                    Console.Write("Deseja continuar calculando(yes/no)? ");
+                    verificador = Console.ReadLine().Trim().ToLower();
+                    if (verificador == "yes")
                     {
-                        Console.Write("Insira a operação(+;-;*;/):");
-                        date.Symbol = Console.ReadLine().Trim();
+                        date.NumberA = date.Sum;
+                        Console.WriteLine();
+                        Console.Write("Insira a operação(+;-;*;/): ");
+                        date.Symbol = Console.ReadLine().Trim().ToLower();
+                        Console.WriteLine();
 
-                        Console.Write("Insira o segundo numero:");
+
+                        Console.Write("Insira o próximo numero: ");
                         date.NumberB = double.Parse(Console.ReadLine().Trim());
+                        Console.WriteLine();
 
-                        date.Operations(date.Symbol);
 
-                        Console.WriteLine("Resultado: "+ date.Result);
+                        date.Operation(date.Symbol);
+
+                        date.Sum = date.Result;
+                        Console.WriteLine("Resultado: "+ date.Sum);
+                        Console.WriteLine();
+
 
                     }
 
-                    else if (verificador == "n")
+                    else if (verificador == "no")
                     {
                         iniciador2 = null;
                     }
                 }
 
-                Console.WriteLine("Deseja reiniciar ou desligar (r/d): ");
-                verificador = Console.ReadLine().Trim();
+                Console.WriteLine();
+                Console.Write("Deseja reiniciar ou desligar (restart/disconnect): ");
+                verificador = Console.ReadLine().Trim().ToLower();
 
 
-                if (verificador == "r")
+                if (verificador == "restart")
                 {
                     date.NumberA = 0;
                     date.NumberB = 0;
                     date.Symbol = null;
                     date.Result = 0;
+                    date.Sum = 0;
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("-------------------------------------------------------");
+                    Console.WriteLine("Calculadora Reiniciada.");
+
                 }
 
-                else if (verificador == "d")
+                else if (verificador == "disconnect")
                 {
                     iniciador = null;
                 }
 
             }
 
-            Console.WriteLine("Fim do cálculo.");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Calculator was turn off.");
             Console.ReadLine();
 
 
