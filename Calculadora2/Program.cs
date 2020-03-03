@@ -160,6 +160,7 @@ namespace Calculadora2
                     date.Symbol = null;
                     date.Result = 0;
                     date.Sum = 0;
+                    verificadorError = true;
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("-------------------------------------------------------");
