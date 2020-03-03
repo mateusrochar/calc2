@@ -10,26 +10,86 @@ namespace Calculadora2
 
             operation date = new operation();
             string verificador;
+            bool verificadorError = true;
 
             string iniciador = "start";
 
             while (iniciador == "start")
             {
                 Console.WriteLine();
-                Console.Write("Insira o primeiro numero: ");
-                date.NumberA = double.Parse(Console.ReadLine().Trim());
-                Console.WriteLine();
 
-                Console.Write("Insira a operação(+;-;*;/): ");
-                date.Symbol = Console.ReadLine().Trim().ToLower();
-                Console.WriteLine();
 
-                Console.Write("Insira o segundo numero: ");
-                date.NumberB = double.Parse(Console.ReadLine().Trim());
-                Console.WriteLine();
+                while (verificadorError) {
+                    try
+                    {
+                        Console.Write("Insira o primeiro numero: ");
+
+                        date.NumberA = double.Parse(Console.ReadLine().Trim());
+                        Console.WriteLine();
+
+                        verificadorError = false;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Write("Insira um numero valido, até 9 unidades.");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        verificadorError = true;
+
+
+                    }
+                }
+
+
+                verificadorError = true;
+                while (verificadorError)
+                {
+                    try
+                    {
+                        Console.Write("Insira a operação(+;-;*;/): ");
+                        date.Symbol = Console.ReadLine().Trim().ToLower();
+                        Console.WriteLine();
+                       
+
+                        verificadorError = false;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Write("Insira um simbolo válido.");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        verificadorError = true;
+
+
+                    }
+                }
+
+                verificadorError = true;
+                while (verificadorError)
+                {
+                    try
+                    {
+                        Console.Write("Insira o segundo numero: ");
+                        date.NumberB = double.Parse(Console.ReadLine().Trim());
+                        Console.WriteLine();
+
+
+                        verificadorError = false;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Write("Insira um numero valido, até 9 unidades.");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        verificadorError = true;
+
+
+                    }
+                }
 
 
                 date.Operation(date.Symbol);
+
 
                 date.Sum = date.Result;
 
@@ -54,8 +114,22 @@ namespace Calculadora2
                         Console.WriteLine();
 
 
+
+
                         Console.Write("Insira o próximo numero: ");
-                        date.NumberB = double.Parse(Console.ReadLine().Trim());
+                        try
+                        {
+                            date.NumberB = double.Parse(Console.ReadLine().Trim());
+                        }
+                        catch (Exception e)
+                        {
+                            Console.Write("Insira um numero valido, até 9 unidades."+ e.Message);
+
+                        }
+
+
+
+
                         Console.WriteLine();
 
 
