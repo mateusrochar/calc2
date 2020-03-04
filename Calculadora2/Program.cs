@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace Calculadora2
 {
@@ -24,7 +26,7 @@ namespace Calculadora2
                     {
                         Console.Write("Insira o primeiro numero: ");
 
-                        date.NumberA = double.Parse(Console.ReadLine().Trim());
+                        date.NumberA = double.Parse(Console.ReadLine().Trim(), CultureInfo.InvariantCulture);
                         Console.WriteLine();
 
                         verificadorError = false;
@@ -44,24 +46,22 @@ namespace Calculadora2
                 verificadorError = true;
                 while (verificadorError)
                 {
-                    try
+                    Console.Write("Insira a operação(+;-;*;/): ");
+                    date.Symbol = Console.ReadLine().Trim().ToLower();
+                    Console.WriteLine();
+
+
+                    if (date.Symbol == "+" || date.Symbol == "-" || date.Symbol == "*" || date.Symbol == "/")
                     {
-                        Console.Write("Insira a operação(+;-;*;/): ");
-                        date.Symbol = Console.ReadLine().Trim().ToLower();
-                        Console.WriteLine();
-                       
+
 
                         verificadorError = false;
                     }
-                    catch (Exception e)
+                    else
                     {
-                        Console.Write("Insira um simbolo válido.");
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        verificadorError = true;
-
-
-                    }
+                        Console.WriteLine("Insira um simbolo válido.");
+                        Console.WriteLine();                    }
+     
                 }
 
                 verificadorError = true;
@@ -70,7 +70,7 @@ namespace Calculadora2
                     try
                     {
                         Console.Write("Insira o segundo numero: ");
-                        date.NumberB = double.Parse(Console.ReadLine().Trim());
+                        date.NumberB = double.Parse(Console.ReadLine().Trim(), CultureInfo.InvariantCulture);
                         Console.WriteLine();
 
 
@@ -105,47 +105,88 @@ namespace Calculadora2
 
                     Console.Write("Deseja continuar calculando(yes/no)? ");
                     verificador = Console.ReadLine().Trim().ToLower();
-                    if (verificador == "yes")
-                    {
-                        date.NumberA = date.Sum;
-                        Console.WriteLine();
-                        Console.Write("Insira a operação(+;-;*;/): ");
-                        date.Symbol = Console.ReadLine().Trim().ToLower();
-                        Console.WriteLine();
 
+
+                    /*
+                    bool verificadorYesorNO = true;
+                    while(verificadorYesorNO)
+                        {
+
+                        if (verificador == "yes" || verificador == "no")
+                        {
+                            verificadorYesorNO = false;
+                            recebedor.Add(verificador);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Write one of the two options: yes or no.");
+                        }
+                        }
+                        */
+
+                    if ( verificador== "yes")
+                        {
+                            date.NumberA = date.Sum;
+                            Console.WriteLine();
+
+
+
+
+                        verificadorError = true;
+                        while (verificadorError)
+                        {
+                            Console.Write("Insira a operação(+;-;*;/): ");
+                            date.Symbol = Console.ReadLine().Trim().ToLower();
+                            Console.WriteLine();
+
+
+                            if (date.Symbol == "+" || date.Symbol == "-" || date.Symbol == "*" || date.Symbol == "/")
+                            {
+
+
+                                verificadorError = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Insira um simbolo válido.");
+                                Console.WriteLine();
+                            }
+
+                        }
 
 
 
                         Console.Write("Insira o próximo numero: ");
-                        try
-                        {
-                            date.NumberB = double.Parse(Console.ReadLine().Trim());
-                        }
-                        catch (Exception e)
-                        {
-                            Console.Write("Insira um numero valido, até 9 unidades."+ e.Message);
+                            try
+                            {
+                                date.NumberB = double.Parse(Console.ReadLine().Trim());
+                            }
+                            catch (Exception e)
+                            {
+                                Console.Write("Insira um numero valido, até 9 unidades." + e.Message);
+
+                            }
+
+
+
+
+                            Console.WriteLine();
+
+
+                            date.Operation(date.Symbol);
+
+                            date.Sum = date.Result;
+                            Console.WriteLine("Resultado: " + date.Sum);
+                            Console.WriteLine();
+
 
                         }
 
+                        else if (verificador == "no")
+                        {
+                            iniciador2 = null;
+                        }
 
-
-
-                        Console.WriteLine();
-
-
-                        date.Operation(date.Symbol);
-
-                        date.Sum = date.Result;
-                        Console.WriteLine("Resultado: "+ date.Sum);
-                        Console.WriteLine();
-
-
-                    }
-
-                    else if (verificador == "no")
-                    {
-                        iniciador2 = null;
-                    }
                 }
 
                 Console.WriteLine();
